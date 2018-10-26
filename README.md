@@ -19,7 +19,7 @@ docker run -it \
 ```
 
 #### Run the MapR Installer container
-Launch the MapR installation from the
+Launch the MapR installation from inside the container, for example:
 ```
 /opt/mapr/installer/bin/mapr-installer-cli install -nvf \
 -o environment.mapr_core_version=6.1.0 \
