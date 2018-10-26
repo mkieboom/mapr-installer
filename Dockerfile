@@ -17,3 +17,4 @@ RUN sed -i -e "s/- include: disksetup.yml/- include: disksetup.yml\\n- include: 
 
 # Run low_memory.yml after ecosystem_install.yml
 RUN sed -i -e "s/- include: ecosystem_install.yml/- include: ecosystem_install.yml\\n- include: low_memory.yml/" /opt/mapr/installer/ansible/playbooks/mapr_top.yml
+

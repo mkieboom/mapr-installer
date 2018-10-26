@@ -15,7 +15,7 @@ docker build -t mkieboom/mapr-installer .
 ```
 docker run -it \
   -p 9443:9443 \
-  maprtech/installer
+  mkieboom/mapr-installer
 ```
 
 #### Run the MapR Installer container
@@ -34,4 +34,5 @@ Launch the MapR installation from the
 -o config.enable_nfs=True \
 -o config.nfs_type="NFSv3" \
 -o config.ssh_id=root \
--o config.ssh_password=mapr```
+-o config.ssh_password=mapr
+```

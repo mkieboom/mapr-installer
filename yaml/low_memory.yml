@@ -185,3 +185,4 @@
     with_items:
       - { regexp: 'export DRILL_HEAP=', line: '#export DRILL_HEAP=${DRILL_HEAP:-"4G"}' }
     when: drillinstalled.stat.exists == true
+
