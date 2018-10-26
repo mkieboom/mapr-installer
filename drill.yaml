@@ -1,0 +1,17 @@
+#environment:
+#  mapr_core_version: 6.1.0
+config:
+  services:
+    mapr-drill:
+      enabled: true
+#      refCnt: 2
+#      version: '1.14'
+#hosts:
+#  services:
+#  - mapr-drill-1.14
+#groups:
+#- hosts:
+#  - 192.168.1.11
+#  label: DATA
+#  services:
+#  - mapr-drill-1.14
