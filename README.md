@@ -1,21 +1,24 @@
 # mapr-installer
 
-##### Clone the project
-```
-git clone https://github.com/mkieboom/mapr-installer  
-cd mapr-installer  
-```
-
-#### Build the MapR Installer container
-```
-docker build -t mkieboom/mapr-installer .
-```
-
-#### Run the MapR Installer container
+#### Run the customized MapR Installer container from docker hub
+Download and run the customized MapR Installer container from docker hub:
 ```
 docker run -it \
   -p 9443:9443 \
   mkieboom/mapr-installer
+```
+
+##### Alternatively: Manually build the MapR Installer container
+Alternatively, clone the github project and build the container manually, eg:
+```
+# Clone the container project
+git clone https://github.com/mkieboom/mapr-installer  
+cd mapr-installer  
+
+# Build the customized MapR Installer container
+docker build -t mkieboom/mapr-installer .
+
+# Use the docker run command to launch the container
 ```
 
 #### Run the MapR Installer container
@@ -35,6 +38,17 @@ Launch the MapR installation from inside the container, for example:
 -o config.nfs_type="NFSv3" \
 -o config.ssh_id=root \
 -o config.ssh_password=mapr
+```
+
+Add MapR Eco-System packages, for example Drill:
+```
+-o config.services.mapr-drill.enabled=True
+```
+
+Use a ssh private key file instead of a ssh password:
+```
+# replace config.ssh_password with:
+-o config.ssh_key_file="/tmp/key"
 ```
 
 # Reset the MapR Installer container database
