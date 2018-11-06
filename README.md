@@ -36,3 +36,8 @@ Launch the MapR installation from inside the container, for example:
 -o config.ssh_id=root \
 -o config.ssh_password=mapr
 ```
+
+# Reset the MapR Installer container database
+```
+/opt/mapr/installer/bin/mapr-installer-cli reset -nvf
+```

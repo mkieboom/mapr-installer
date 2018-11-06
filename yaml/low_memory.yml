@@ -117,6 +117,38 @@
       - { regexp: 'service.heapsize.percent=', line: '5' }
     when: warden_mastgateway_exists.stat.exists == true
 
+  # warden.nodemanager.conf
+  - name: Check if warden.nodemanager.conf exists
+    stat: path=/opt/mapr/conf/conf.d/warden.nodemanager.conf
+    register: warden_nodemanager_exists
+
+  - name: Modify warden.nodemanager.conf for LOW memory usage
+    lineinfile:
+      dest: /opt/mapr/conf/conf.d/warden.nodemanager.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.regexp }}{{ item.line }}"
+    with_items:
+      - { regexp: 'service.heapsize.min=', line: '64' }
+      - { regexp: 'service.heapsize.max=', line: '256' }
+      - { regexp: 'service.heapsize.percent=', line: '2' }
+    when: warden_nodemanager_exists.stat.exists == true
+
+  # warden.resourcemanager.conf
+  - name: Check if warden.resourcemanager.conf exists
+    stat: path=/opt/mapr/conf/conf.d/warden.resourcemanager.conf
+    register: warden_resourcemanager_exists
+
+  - name: Modify warden.resourcemanager.conf for LOW memory usage
+    lineinfile:
+      dest: /opt/mapr/conf/conf.d/warden.resourcemanager.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.regexp }}{{ item.line }}"
+    with_items:
+      - { regexp: 'service.heapsize.min=', line: '128' }
+      - { regexp: 'service.heapsize.max=', line: '512' }
+      - { regexp: 'service.heapsize.percent=', line: '5' }
+    when: warden_resourcemanager_exists.stat.exists == true
+
   # warden.opentsdb.conf
   - name: Check if warden.opentsdb.conf exists
     stat: path=/opt/mapr/conf/conf.d/warden.opentsdb.conf
