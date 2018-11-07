@@ -1,6 +1,6 @@
 # mapr-installer
 
-#### Run the customized MapR Installer container from docker hub
+## Run the customized MapR Installer container from docker hub
 Download and run the customized MapR Installer container from docker hub:
 ```
 docker run -it \
@@ -8,7 +8,7 @@ docker run -it \
   mkieboom/mapr-installer
 ```
 
-##### Alternatively: Manually build the MapR Installer container
+### Alternatively: Manually build the MapR Installer container
 Alternatively, clone the github project and build the container manually, eg:
 ```
 # Clone the container project
@@ -21,7 +21,7 @@ docker build -t mkieboom/mapr-installer .
 # Use the docker run command to launch the container
 ```
 
-#### Run the MapR Installer container
+## Run the MapR Installer container
 Launch the MapR installation from inside the container, for example:
 ```
 /opt/mapr/installer/bin/mapr-installer-cli install -nvf \
@@ -40,9 +40,18 @@ Launch the MapR installation from inside the container, for example:
 -o config.ssh_password=mapr
 ```
 
-Add MapR Eco-System packages, for example Drill:
+Adds MapR Eco-System packages, for example Drill or Spark on YARN:
 ```
+# Add Drill to the installation:
 -o config.services.mapr-drill.enabled=True
+```
+
+```
+# Add Spark on Yarn to the installation:
+-o config.services.mapr-spark-2.3.1.enabled=True \
+-o config.services.mapr-spark-historyserver.enabled=True \
+-o config.services.mapr-nodemanager.enabled=True \
+-o config.services.mapr-resourcemanager.enabled=True
 ```
 
 Use a ssh private key file instead of a ssh password:
@@ -51,7 +60,16 @@ Use a ssh private key file instead of a ssh password:
 -o config.ssh_key_file="/tmp/key"
 ```
 
-# Reset the MapR Installer container database
+## Reset the MapR Installer container database
 ```
 /opt/mapr/installer/bin/mapr-installer-cli reset -nvf
+```
+
+## Probe an existing cluster
+```
+/opt/mapr/installer/bin/mapr-installer-cli probe -n \
+-o config.ssh_id=root \
+-o config.ssh_password=mapr \
+-o config.hosts='["192.168.1.11"]' \
+ > /tmp/myprobedcluster.yaml
 ```
