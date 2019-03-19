@@ -22,5 +22,5 @@ RUN sed -i -e "s/- import_playbook: ecosystem_install.yml/- import_playbook: eco
 RUN sed -i -e "s/    def import_template(self, add_metrics=False):/    def import_template(self, add_metrics=False):\\n        add_metrics=False/" /opt/mapr/installer/lib/managers.py
 
 # Add MapR Setup sample scripts
-ADD scripts/install_base.sh /install_base.sh
-RUN chmod +x /*.sh
+#ADD scripts/install_base.sh /install_base.sh
+#RUN chmod +x /*.sh
